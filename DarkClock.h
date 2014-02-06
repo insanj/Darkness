@@ -63,3 +63,52 @@
 -(void)viewDidLoad;
 -(id)init;
 @end
+
+@interface StopwatchTimeView : UIView { // TimeView
+    UILabel *_currentLapTimeLabel;
+}
+
+@property(nonatomic) double currentLapTime; 
++(double)defaultHeight;
+-(_Bool)showSubseconds;
+-(CGSize)sizeThatFits:(CGSize)arg1;
+-(void)layoutSubviews;
+-(void)_layoutWithSize:(CGSize)arg1 maxY:(double *)arg2;
+-(void)handleLocaleChange;
+-(void)_updateCurrentLapTime;
+-(id)init;
+-(void)configureBackground;
+-(void)configureTimeLabel;
+@end
+
+
+@interface MTStopwatchControlsView : UIView{
+    //MTStopwatchController *_controller;
+    UIView *_buttonsBackgroundView;
+    UIView *_topKeylineView;
+    UIView *_bottomKeylineView;
+   	StopwatchTimeView *_timeView;
+}
+
+//@property(readonly, nonatomic) StopwatchTimeView *timeView;
+
++(double)defaultHeight;
++(double)timeViewHeight;
+-(void)layoutSubviews;
+-(void)handleLocaleChange;
+-(void)_configureAndAddButton:(id)arg1;
+-(void)dealloc;
+-(id)initWithTarget:(id)arg1;
+@end
+
+@interface MTCircleButton : UIButton
+@property(readonly, nonatomic) unsigned long long size;
+-(void)setColor:(unsigned long long)arg1 forState:(unsigned long long)arg2; // border color
+-(id)initWithSize:(unsigned long long)arg1;
+@end
+
+@interface StopWatchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+    MTStopwatchControlsView *_lapControls;
+	UITableView *_lapTimeTable;
+}
+@end
