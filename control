@@ -1,0 +1,10 @@
+Package: com.insanj.darkclock
+Name: DarkClock
+Pre-Depends: firmware (>= 7.0)
+Depends: mobilesubstrate
+Version: 0.1
+Architecture: iphoneos-arm
+Description: Dark, beautiful Clock app.
+Maintainer: Julian Weiss <me@insanj.com>
+Author: Julian (insanj) Weiss
+Section: Tweaks
