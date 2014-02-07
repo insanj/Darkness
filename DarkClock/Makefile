@@ -1,4 +1,3 @@
-THEOS_PACKAGE_DIR_NAME = debs
 TARGET = :clang
 ARCHS = armv7 armv7s arm64
 
@@ -9,3 +8,4 @@ DarkClock_FILES = DarkClock.xm
 DarkClock_FRAMEWORKS = UIKit
 
 include $(THEOS_MAKE_PATH)/tweak.mk
+include $(THEOS_MAKE_PATH)/aggregate.mk

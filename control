@@ -2,6 +2,7 @@ Package: com.insanj.darkness
 Name: Darkness
 Pre-Depends: firmware (>= 7.0)
 Depends: mobilesubstrate
+Replaces: DarkPhotos
 Version: 0.1
 Architecture: iphoneos-arm
 Description: Dark, beautiful apps.
