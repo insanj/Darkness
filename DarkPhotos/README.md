@@ -1,25 +1,10 @@
-Darkness
+DarkPhotos
 =======================
 
-Dark, beautiful apps. Commercial, open source tweak, pending initial release.
+Dark, beautiful Photos (MobileSlideShow) app. Compiled for all devices (unlike BlackTranslucentPhotos).
 
-__List of supported apps:__
-- Photos
-
-__List of in-progress apps:__
-- Clock
-
-__List of pending apps:__
-- Music
-- Mail
-- Contacts
-- Notes
-- Phone
-- Settings
-- Messages
-- Kik
-- Twitter
-- and many more...
+![Photo](https://f.cloud.github.com/assets/951011/2096268/18e8c9ea-8efe-11e3-825a-633a5d6f1644.PNG)
+![Streams](https://f.cloud.github.com/assets/951011/2096269/19cd5772-8efe-11e3-9393-e5601b14c6d9.PNG)
 
 ---------------------------------------	
 [Creative Commons Attribution-NonCommercial 3.0 United States License](http://creativecommons.org/licenses/by-nc/3.0/us/) as of 2014:

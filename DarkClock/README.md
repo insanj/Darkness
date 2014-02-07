@@ -1,25 +1,7 @@
-Darkness
+DarkClock
 =======================
 
-Dark, beautiful apps. Commercial, open source tweak, pending initial release.
-
-__List of supported apps:__
-- Photos
-
-__List of in-progress apps:__
-- Clock
-
-__List of pending apps:__
-- Music
-- Mail
-- Contacts
-- Notes
-- Phone
-- Settings
-- Messages
-- Kik
-- Twitter
-- and many more...
+Dark, beautiful Clock app.
 
 ---------------------------------------	
 [Creative Commons Attribution-NonCommercial 3.0 United States License](http://creativecommons.org/licenses/by-nc/3.0/us/) as of 2014:
