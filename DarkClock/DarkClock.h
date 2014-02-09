@@ -12,6 +12,19 @@
 -(void)viewWillAppear:(BOOL)arg1;
 @end
 
+@interface UITableViewWrapperView : UIView {
+    NSMutableArray *_stuckToBackViews;
+}
+
+@property(readonly) NSArray *stuckToBackViews;
+
+-(void)_stickViewToBack:(id)arg1;
+-(void)_unstickView:(id)arg1;
+-(BOOL)pointInside:(CGPoint)arg1 withEvent:(id)arg2;
+-(id)stuckToBackViews;
+-(void)willRemoveSubview:(id)arg1;
+@end
+
 @interface AlarmView : UIView
 @property(readonly, nonatomic) UISwitch *enabledSwitch;
 @property(readonly, nonatomic) UILabel *repeatLabel;
@@ -172,5 +185,59 @@
 -(id)init;
 @end
 
+@protocol TKTonePickerStyleProvider <NSObject>
+@property(readwrite, nonatomic) UIEdgeInsets tonePickerHeaderTextPaddingInsets;
+@property(readwrite, nonatomic) UIOffset tonePickerHeaderTextShadowOffset;
+@property(retain, nonatomic) UIColor *tonePickerHeaderTextShadowColor;
+@property(retain, nonatomic) UIColor *tonePickerHeaderTextColor;
+@property(retain, nonatomic) UIFont *tonePickerHeaderTextFont;
+@property(readwrite, nonatomic) BOOL wantsCustomTonePickerHeaderView;
+@property(retain, nonatomic) UIColor *tonePickerCellBackgroundColor;
+@property(retain, nonatomic) UIColor *tonePickerCellHighlightedTextColor;
+@property(retain, nonatomic) UIColor *tonePickerCellTextColor;
+@property(retain, nonatomic) UIFont *tonePickerCellTextFont;
+@property(readwrite, nonatomic) int tonePickerTableViewSeparatorStyle;
+@property(readwrite, nonatomic) BOOL tonePickerUsesOpaqueBackground;
+-(id)newAccessoryDisclosureIndicatorViewForTonePickerCell;
+-(id)newBackgroundViewForSelectedTonePickerCell:(BOOL)arg1;
+@end
+
+@interface TKToneTableController : NSObject <UITableViewDataSource, UITableViewDelegate> {
+    UITableView *_tableView;
+}
+
+@property(setter=_setDefaultSectionHeaderView:,retain) UIView *_defaultSectionHeaderView;
+@property(setter=_setMediaSectionHeaderView:,retain) UIView *_mediaSectionHeaderView;
+@property(setter=_setRegularToneSectionHeaderViews:,retain) NSMutableArray *_regularToneSectionHeaderViews;
+@property(setter=_setStyleProvider:,retain) id _styleProvider;
+@property(retain) UIImage *checkmarkImage;
+@property(retain) id styleProvider;
+@property(retain) NSString *vibrationAccountIdentifier;
+
+-(UIView *)_defaultSectionHeaderView;
+-(void)_getTitle:(id*)arg1 customHeaderView:(id*)arg2 forHeaderInSection:(int)arg3;
+-(UIView *)_mediaSectionHeaderView;
+-(NSMutableArray *)_regularToneSectionHeaderViews;
+-(void)_setDefaultSectionHeaderView:(UIView *)arg1;
+-(void)_setMediaSectionHeaderView:(UIView *)arg1;
+-(void)_setRegularToneSectionHeaderViews:(NSMutableArray *)arg1;
+-(id)_styleProvider;
+-(UIImage *)checkmarkImage;
+-(void)configureNavigationBarIfNeeded;
+-(id)init;
+-(id)styleProvider;
+-(id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
+-(void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
+-(float)tableView:(id)arg1 heightForHeaderInSection:(int)arg2;
+-(float)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
+-(int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
+-(id)tableView:(id)arg1 titleForHeaderInSection:(int)arg2;
+-(id)tableView:(id)arg1 viewForHeaderInSection:(int)arg2;
+-(void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
+-(void)toneClassicsTableView:(id)arg1 willDimissWithNewSelectedIndexPath:(id)arg2;
+-(id)toneIdentifiersForToneClassicsTableView:(id)arg1;
+@end
 
 
+@interface TKPickerTableViewCell : UITableViewCell
+@end

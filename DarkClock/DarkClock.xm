@@ -13,12 +13,29 @@
 %end
 
 /****************************** Global Changes ******************************/
+
 %ctor{
     [UITabBar appearance].barStyle = UIBarStyleBlack;
     [UINavigationBar appearance].barStyle = UIBarStyleBlack;
     ((UILayoutContainerView *)[%c(UILayoutContainerView) appearance]).backgroundColor = [UIColor blackColor];
- //   ((UITableViewCellContentView *)[%c(UITableViewCellContentView) appearance]).backgroundColor = [UIColor blackColor];
+    ((UITableViewWrapperView *)[%c(UITableViewWrapperView) appearance]).backgroundColor = [UIColor blackColor];
+    [UITableView appearance].backgroundColor = [UIColor blackColor];
+   // [UITableViewCell appearance].backgroundColor = [UIColor blackColor];
 }
+
+/*
+%hook UITableViewWrapperView
+
+-(void)layoutSubviews{
+	%orig();
+
+	for(UIView *v in self.subviews)
+		if([v isKindOfClass:[UILabel class]])
+			((UILabel *)v).textColor = [UIColor whiteColor];
+}
+
+%end
+*/
 
 %hook UIKBRenderConfig
 
@@ -161,9 +178,6 @@
 			((UILabel *)v).textColor = [UIColor whiteColor];
 		}
 	}
-
-//	MSHookIvar<UILabel *>(view, "_currentLapTimeLabel").textColor = [UIColor whiteColor];
-//	MSHookIvar<UILabel *>(view, "_currentLapTimeLabel").backgroundColor = [UIColor blackColor];
 }
 
 %end
@@ -179,12 +193,33 @@
 
 %end
 
-%hook SoundPicker
+%hook TKToneTableController
 
--(void)loadView{
-	%orig();
-	self.view.backgroundColor = [UIColor blackColor];
+-(id)tableView:(id)tableView viewForHeaderInSection:(id)section{
+	UIView *orig = %orig();
+	orig.backgroundColor = [UIColor blackColor];
+	return orig;
+}
+
+-(id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2{
+	UITableViewCell *cell = (UITableViewCell *) %orig();
+	cell.backgroundColor = [UIColor blackColor];
+	cell.textLabel.textColor = [UIColor whiteColor];
+	cell.detailTextLabel.textColor = [UIColor whiteColor];
+	return cell;
 }
 
 %end
 
+/*
+%hook TKPickerTableViewCell
+
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+	TKPickerTableViewCell *cell = (TKPickerTableViewCell *) %orig();
+	cell.backgroundColor = [UIColor blackColor];
+	cell.textLabel.textColor = [UIColor whiteColor];
+	cell.detailTextLabel.textColor = [UIColor whiteColor];
+	return cell;
+}
+
+%end*/
