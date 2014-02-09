@@ -1,5 +1,10 @@
 #import <UIKit/UIKit.h>
 
+@interface UILayoutContainerView : UIView
+@end
+
+@interface UITableViewCellContentView : UIView
+@end
 
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property(readonly, nonatomic) UIBarButtonItem *addButton;
@@ -124,3 +129,48 @@
 	UITableView *_lapTimeTable;
 }
 @end
+
+@interface TKTonePicker : UIView {
+    id _delegate;
+    UITableView *_table;
+    //TKToneTableController *_tableController;
+}
+
+-(void)_buildTable;
+-(void)_reloadData;
+-(void)addMediaItems:(id)arg1;
+-(void)dealloc;
+-(id)delegate;
+-(void)didMoveToWindow;
+-(id)initWithFrame:(CGRect)arg1;
+-(void)layoutSubviews;
+@end
+
+@interface SoundPicker : UIViewController {
+    TKTonePicker *_ringtonePicker;
+}
+
+-(void)loadView;
+-(void)dealloc;
+-(id)init;
+@end
+
+@interface TimerControlsView : UIView {
+    //TimerTimeView *_timeView;
+    UIDatePicker *_timePicker;
+}
+
+-(id)initWithTarget:(id)arg1;
+@end
+
+@interface TimerViewController : UIViewController {
+    TimerControlsView *_timerControlsView;
+    SoundPicker *_soundPicker;
+    UIPopoverController *_soundPopoverController;
+}
+
+-(id)init;
+@end
+
+
+

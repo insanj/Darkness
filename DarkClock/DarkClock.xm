@@ -1,6 +1,5 @@
 #import "DarkClock.h"
 
-/*
 %hook UIView
 
 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
@@ -12,12 +11,25 @@
 }
 
 %end
-*/
 
+/****************************** Global Changes ******************************/
 %ctor{
     [UITabBar appearance].barStyle = UIBarStyleBlack;
     [UINavigationBar appearance].barStyle = UIBarStyleBlack;
+    ((UILayoutContainerView *)[%c(UILayoutContainerView) appearance]).backgroundColor = [UIColor blackColor];
+ //   ((UITableViewCellContentView *)[%c(UITableViewCellContentView) appearance]).backgroundColor = [UIColor blackColor];
 }
+
+%hook UIKBRenderConfig
+
+-(BOOL)lightKeyboard{
+	return NO;
+}
+
+%end
+
+
+/****************************** Alarm View Changes ******************************/
 
 %hook TableViewController
 
@@ -52,6 +64,8 @@
 
 %end
 
+/****************************** World Clock View Changes ******************************/
+
 %hook WorldClockTableViewCell
 
 -(void)layoutSubviews{
@@ -62,12 +76,6 @@
 %end
 
 %hook WorldClockCellView
-/*
--(id)initWithFrame:(CGRect)arg1{
-	WorldClockCellView *view = (WorldClockCellView *) %orig();
-	view.backgroundColor = [UIColor blackColor];
-	return view;
-}*/
 
 -(void)layoutSubviews{
 	%orig();
@@ -105,6 +113,8 @@
 }
 
 %end
+
+/****************************** Stopwatch View Changes ******************************/
 
 %hook StopWatchViewController
 
@@ -158,10 +168,23 @@
 
 %end
 
-%hook UIKBRenderConfig
+/****************************** Timer View Changes ******************************/
 
--(BOOL)lightKeyboard{
-	return NO;
+%hook MTCircleButton
+
+-(void)willMoveToSuperview:(UIView *)newSuperview{
+	%orig();
+	newSuperview.backgroundColor = [UIColor colorWithWhite:0.2 alpha:1.0];
 }
 
 %end
+
+%hook SoundPicker
+
+-(void)loadView{
+	%orig();
+	self.view.backgroundColor = [UIColor blackColor];
+}
+
+%end
+
