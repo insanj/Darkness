@@ -5,9 +5,8 @@
 
 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
 	UIView *o = %orig();
-	if(o != nil){
+	if(o)
 		NSLog(@"[DarkClock] DEBUG, hit: %@, super:%@, sub:%@", o, o.superview, o.subviews);
-	}
 
 	return o;
 }
@@ -53,14 +52,22 @@
 
 %end
 
+%hook WorldClockTableViewCell
+
+-(void)layoutSubviews{
+	%orig();
+	self.backgroundColor = [UIColor blackColor];
+}
+
+%end
 
 %hook WorldClockCellView
-
+/*
 -(id)initWithFrame:(CGRect)arg1{
 	WorldClockCellView *view = (WorldClockCellView *) %orig();
 	view.backgroundColor = [UIColor blackColor];
 	return view;
-}
+}*/
 
 -(void)layoutSubviews{
 	%orig();

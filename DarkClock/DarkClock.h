@@ -25,6 +25,18 @@
 }
 @end
 
+@interface WorldClockTableViewCell : UITableViewCell
++(float)defaultHeight;
+-(void)timeDidChangeForClockCell:(id)arg1;
+-(void)setEditing:(_Bool)arg1 animated:(_Bool)arg2;
+-(void)setStyle:(long long)arg1 animated:(_Bool)arg2;
+-(void)stop;
+-(void)start;
+-(void)layoutSubviews;
+-(void)dealloc;
+-(id)init;
+@end
+
 @interface WorldClockCellView : UIView
 @property(readonly, nonatomic) UILabel *combinedLabel; 
 @property(readonly, nonatomic) UILabel *nameLabel;
